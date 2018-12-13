@@ -1,29 +1,71 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  Button,
+} from 'react-native';
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import { MSAdalLogin, MSAdalLogout } from 'react-native-ms-adal';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+const authority = "https://login.windows.net/common";
+const resourceUri = "https://graph.windows.net";
+const clientId = 'a96ed26d-1bfc-48e2-bedc-b167ce779428';
+const redirectUri = 'http://localhost';
+const secret = 'V2PRU03oiq3z68yrBI0vrWAQBgdSWf27v6zOWPQGq/U='
+export default class adalExample extends Component {
 
-type Props = {};
-export default class App extends Component<Props> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedin: false,
+      givenName: '',
+    }
+  }
+
+  renderLogin() {
+    return (
+      <Button title="login" onPress={() => {
+        MSAdalLogin(authority, clientId, redirectUri, resourceUri)
+        .then((authDetails) => {
+          this.setState({
+            isLoggedin: true,
+            givenName: authDetails.userInfo.givenName
+          })
+        }).catch((err) => {
+          console.error(err)
+        })
+      }} />
+    );
+  }
+
+  renderLogout() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.welcome}>Hi {this.state.givenName}!</Text>
+        <Button title="logout" onPress={() => {
+          MSAdalLogout(authority, redirectUri)
+          .then(() => {
+            this.setState({
+              isLoggedin: false,
+              givenName: '',
+            })
+          })
+        }} />
+
+      </View>
+    );
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        {
+          this.state.isLoggedin
+            ? this.renderLogout()
+            : this.renderLogin()
+        }
       </View>
     );
   }
@@ -39,7 +81,7 @@ const styles = StyleSheet.create({
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    margin: 20,
   },
   instructions: {
     textAlign: 'center',
