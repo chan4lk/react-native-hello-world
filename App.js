@@ -8,10 +8,12 @@ import {
 } from 'react-native';
 
 import { MSAdalLogin, MSAdalLogout } from 'react-native-ms-adal';
+import CookieManager from 'react-native-cookies';
 
 const authority = "https://login.windows.net/common";
 const resourceUri = "https://graph.windows.net";
-const clientId = 'a96ed26d-1bfc-48e2-bedc-b167ce779428';
+//const clientId = 'a96ed26d-1bfc-48e2-bedc-b167ce779428';
+const clientId = '3767e5e7-0d71-46d5-94f5-3d722833979c';
 const redirectUri = 'http://localhost';
 const secret = 'V2PRU03oiq3z68yrBI0vrWAQBgdSWf27v6zOWPQGq/U='
 export default class adalExample extends Component {
@@ -27,15 +29,17 @@ export default class adalExample extends Component {
   renderLogin() {
     return (
       <Button title="login" onPress={() => {
-        MSAdalLogin(authority, clientId, redirectUri, resourceUri)
-        .then((authDetails) => {
-          this.setState({
-            isLoggedin: true,
-            givenName: authDetails.userInfo.givenName
+        
+          MSAdalLogin(authority, clientId, redirectUri, resourceUri)
+          .then((authDetails) => {
+            this.setState({
+              isLoggedin: true,
+              givenName: authDetails.userInfo.givenName
+            })
+          }).catch((err) => {
+            console.error(err)
           })
-        }).catch((err) => {
-          console.error(err)
-        })
+        
       }} />
     );
   }
@@ -47,10 +51,12 @@ export default class adalExample extends Component {
         <Button title="logout" onPress={() => {
           MSAdalLogout(authority, redirectUri)
           .then(() => {
-            this.setState({
-              isLoggedin: false,
-              givenName: '',
-            })
+            CookieManager.clearAll().then((res) => {
+              this.setState({
+                isLoggedin: false,
+                givenName: '',
+              })
+          })
           })
         }} />
 
