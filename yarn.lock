@@ -4499,6 +4499,11 @@ react-is@^16.6.3:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.6.3.tgz#d2d7462fcfcbe6ec0da56ad69047e47e56e7eac0"
   integrity sha512-u7FDWtthB4rWibG/+mFbVd5FvdI20yde86qKGx4lVUTWmPlSWQ4QxbBIrrs+HnXGbxOUlUzTAP/VDmvCwaP2yA==
 
+react-native-azure-adal@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/react-native-azure-adal/-/react-native-azure-adal-1.0.9.tgz#78c857f54e192f13ed79d354b11fad6e2b0d6109"
+  integrity sha512-VeC8JW8qDgYua0LYfqqxTNKk8ljq32i5Wnb1DKJo0RnlUnYBD8bwu2XEXOmoPqFW93U+FhOKTTD34OC5jyAfNA==
+
 react-native-cookies@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/react-native-cookies/-/react-native-cookies-3.3.0.tgz#527f65eb2d8a7a000107706bb11beb57f511e701"

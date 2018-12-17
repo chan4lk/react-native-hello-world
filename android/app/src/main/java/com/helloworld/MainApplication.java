@@ -3,6 +3,7 @@ package com.helloworld;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.microsoft.azure.adal.RNAzureAdalPackage;
 import com.psykar.cookiemanager.CookieManagerPackage;
 import com.microsoft.aad.adal.rn.RNAdalPackage;
 import com.facebook.react.ReactNativeHost;
@@ -25,6 +26,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNAzureAdalPackage(),
             new CookieManagerPackage(),
             new RNAdalPackage()
       );

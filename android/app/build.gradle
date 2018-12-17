@@ -137,6 +137,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-azure-adal')
     compile project(':react-native-cookies')
     compile project(':react-native-ms-adal')
     implementation fileTree(dir: "libs", include: ["*.jar"])
