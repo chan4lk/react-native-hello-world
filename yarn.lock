@@ -4511,11 +4511,6 @@ react-native-cookies@^3.3.0:
   dependencies:
     invariant "^2.1.0"
 
-react-native-ms-adal@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/react-native-ms-adal/-/react-native-ms-adal-0.4.2.tgz#e58d8ac7c58b558a156192c5df161348c976b922"
-  integrity sha512-CNfgbA/J3SzC4MoSuMlnyFnqftwpLL9KMi2EFhXQPkAa80jdTwsXripuCTLTtl9GsKVHvx+eBTmpBXsqOAcwew==
-
 react-native@0.57.8:
   version "0.57.8"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.57.8.tgz#1a840fbe144cd3902cc14313a783ce28efc48cb9"
